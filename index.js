@@ -1,7 +1,7 @@
 import express from 'express';
-import importmiddlewares from './midlewareshandler.js';
+import importMiddlewares from './midlewaresHandler.js';
 
-const middlewares = await importmiddlewares();
+const middlewares = await importMiddlewares();
 const app = express();
 const port = 3000;
 const apiroutes = [
