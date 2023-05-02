@@ -14,6 +14,7 @@ middlewares.forEach((middleware) => {
 });
 
 for (const product of apiRoutes) {
+  console.log(product.path + product.controller);
   app.use(product.path, product.controller);
 }
 
