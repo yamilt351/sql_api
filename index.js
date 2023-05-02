@@ -5,7 +5,7 @@ const middlewares = await importMiddlewares();
 const app = express();
 const port = 3000;
 const apiroutes = [
-  { path: '/product', controller: import('./product/product_controler') },
+  { path: '/product', controller: await import('./product/product_controler.js') },
 ];
 
 middlewares.forEach((middleware) => {
