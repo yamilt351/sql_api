@@ -1,6 +1,6 @@
 import { Router } from 'express';
 const router = Router();
-const pizza = require('./product.services');
+const pizza = await import('./product.services.js');
 
 router.get('/getPizza', getPizzas);
 
@@ -10,4 +10,4 @@ function getPizzas(req, res, next) {
     .catch((err) => next(err));
 }
 
-export default router
+export default router;
