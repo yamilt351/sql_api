@@ -1,8 +1,11 @@
 import express from 'express';
 import importMiddlewares from './midlewaresHandler.js';
-import { Pool } from 'pg';
+import pg from 'pg';
 import dotenv from 'dotenv';
+
 dotenv.config();
+
+const {Pool} = pg;
 const middlewares = await importMiddlewares();
 const app = express();
 const port = 3000;
@@ -12,12 +15,11 @@ const apiroutes = [
     controller: await import('./product/product_controler.js'),
   },
 ];
-
 const pool = new Pool({
   host: 'localhost',
   port: 5432,
   database: 'mydb',
-  user: process.env.USERNAME,
+  user: process.env.USERNAME_SQL,
   password: process.env.PASSWORD,
 });
 
