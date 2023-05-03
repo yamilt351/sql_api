@@ -1,0 +1,10 @@
+CREATE TABLE products (
+  id SERIAL PRIMARY KEY,
+  food VARCHAR(255) NOT NULL,
+  description TEXT,
+  img:BYTEA UNIQUE,
+  price NUMERIC(10,2) NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
