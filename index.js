@@ -2,10 +2,11 @@ import express from 'express';
 import importMiddlewares from './midlewaresHandler.js';
 import pg from 'pg';
 import dotenv from 'dotenv';
+import { errorMiddleware } from './helpers/errorHandler.js';
 
 dotenv.config();
 
-const {Pool} = pg;
+const { Pool } = pg;
 const middlewares = await importMiddlewares();
 const app = express();
 const port = 3000;
@@ -31,6 +32,7 @@ for (const product of apiroutes) {
   const controller = product.controller.default;
   app.use(product.path, controller);
 }
+app.use(errorMiddleware);
 
 pool
   .connect()
