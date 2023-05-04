@@ -16,7 +16,7 @@ const apiroutes = [
     controller: await import('./product/product_controler.js'),
   },
 ];
-const pool = new Pool({
+export const pool = new Pool({
   host: 'localhost',
   port: 5432,
   database: 'mydb',
