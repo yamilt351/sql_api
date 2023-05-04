@@ -10,28 +10,36 @@ const { Pool } = pg;
 const middlewares = await importMiddlewares();
 const app = express();
 const port = 3000;
-const apiroutes = [
-  {
-    path: '/product',
-    controller: await import('./product/product_controler.js'),
-  },
-];
-export const pool = new Pool({
+
+//conect to sql
+const pool = new Pool({
   host: 'localhost',
   port: 5432,
   database: 'mydb',
   user: process.env.USERNAME_SQL,
   password: process.env.PASSWORD,
 });
+export { pool };
+//routes import
+const apiroutes = [
+  {
+    path: '/getProduct',
+    controller: await import('./product/product_controler.js'),
+  },
+];
 
+//import middlewares
 middlewares.forEach((middleware) => {
   app.use(middleware);
 });
 
+//using routes
 for (const product of apiroutes) {
   const controller = product.controller.default;
+  console.log(product.path);
   app.use(product.path, controller);
 }
+// error handler middleware
 app.use(errorMiddleware);
 
 pool
