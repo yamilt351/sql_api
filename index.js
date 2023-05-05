@@ -22,7 +22,7 @@ export { pool };
 //routes import
 const apiroutes = [
   {
-    path: '/getPizza',
+    path: '/getPizza/',
     controller: await import('./product/product_controler.js'),
   },
 ];
@@ -35,7 +35,7 @@ middlewares.forEach((middleware) => {
 //using routes
 for (const product of apiroutes) {
   const controller = product.controller.default;
-  console.log(product.path + " asdasdas " + controller);
+  console.log(product.path + ' - ' + controller);
   app.use(product.path, controller);
 }
 
@@ -64,3 +64,5 @@ pool
 app.listen(port, () => {
   console.log('listening on port ' + port);
 });
+
+export default app;

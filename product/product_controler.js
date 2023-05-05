@@ -1,7 +1,7 @@
 import { Router } from 'express';
 const router = Router();
 
-router.get('/getPizza', Pizzas);
+router.get('/getPizza/', Pizzas);
 
 async function Pizzas(req, res, next) {
   console.log(req);
