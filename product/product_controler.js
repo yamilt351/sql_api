@@ -1,9 +1,10 @@
 import { Router } from 'express';
 const router = Router();
 
-router.get('/getProduct', getProducts);
+router.get('/getPizza', Pizzas);
 
-async function getProducts(req, res, next) {
+async function Pizzas(req, res, next) {
+  console.log(req);
   const { offset } = await req.query;
   const { product } = await import('./product.services.js');
   console.log(product);

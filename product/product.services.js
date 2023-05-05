@@ -1,7 +1,8 @@
-import {pool} from '../index.js'
+import { pool } from '../index.js';
 
-export const pizza = async function get(offset) {
+export default async function getProduct(offset) {
   const query = `SELECT * FROM products ${offset} LIMIT 9`;
+  console.log(query);
   const result = await pool.query(query);
   return result.rows;
-};
+}
