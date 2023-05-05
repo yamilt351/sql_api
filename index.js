@@ -3,6 +3,7 @@ import importMiddlewares from './midlewaresHandler.js';
 import pg from 'pg';
 import dotenv from 'dotenv';
 import { errorMiddleware } from './helpers/errorHandler.js';
+import {getProducts} from './product/product_controler.js'
 
 dotenv.config();
 
@@ -22,8 +23,8 @@ export { pool };
 //routes import
 const apiroutes = [
   {
-    path: '/getPizza/',
-    controller: await import('./product/product_controler.js'),
+    path: '/getPizza',
+    controller: getProducts,
   },
 ];
 
@@ -34,9 +35,8 @@ middlewares.forEach((middleware) => {
 
 //using routes
 for (const product of apiroutes) {
-  const controller = product.controller.default;
-  console.log(product.path + ' - ' + controller);
-  app.use(product.path, controller);
+  console.log(product.controller);
+  app.use(product.path, product.controller);
 }
 
 // error handler middleware
